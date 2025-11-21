@@ -69,3 +69,15 @@ src/
     ├── AppMenu.java
     └── Main.java
 ```
+### Configurar Conexión MySQL
+
+Antes de ejecutar, editar:
+
+** `src/config/DatabaseConnection.java`**
+
+Cambiar:
+```java
+private static String PASSWORD = "";  // ← Poner tu contraseña aquí
+```
+
+ Por seguridad, no incluimos contraseñas en el código público.

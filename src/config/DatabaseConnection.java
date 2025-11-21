@@ -9,7 +9,7 @@ public class DatabaseConnection {
     // VARIABLES CONFIGURABLES (las podés modificar cuando quieras)
     private static final String URL = "jdbc:mysql://localhost:3306/mdb_tpi?useSSL=false&serverTimezone=UTC";
     private static String USER = "root";      // Cambiable
-    private static String PASSWORD = "MySQL_Root123!";      // Cambiable
+    private static String PASSWORD = "";      // Cambiable
 
     /**
      * Permite cambiar usuario y contraseña en tiempo de ejecución
