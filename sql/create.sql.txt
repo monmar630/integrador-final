@@ -1,0 +1,43 @@
+-- ============================================
+-- CREACIÓN DE BASE DE DATOS Y TABLAS
+-- Trabajo Práctico Integrador – Programación II
+-- ============================================
+
+-- Crear base de datos (si no existe)
+CREATE DATABASE IF NOT EXISTS mdb_tpi;
+USE mdb_tpi;
+
+-- ====================
+-- TABLA ENVÍO
+-- ====================
+DROP TABLE IF EXISTS envio;
+
+CREATE TABLE envio (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    tracking VARCHAR(50) UNIQUE NOT NULL,
+    empresa ENUM('OCA', 'ANDREANI', 'CORREO_ARG') NOT NULL,
+    tipo ENUM('ESTANDAR', 'EXPRESS') NOT NULL,
+    costo DECIMAL(10,2) NOT NULL CHECK (costo > 0),
+    fechaDespacho DATE NOT NULL,
+    fechaEstimada DATE NOT NULL,
+    estado ENUM('EN_PREPARACION','EN_TRANSITO','ENTREGADO') NOT NULL,
+    eliminado BOOLEAN DEFAULT 0
+);
+
+-- =====================
+-- TABLA PEDIDO
+-- =====================
+DROP TABLE IF EXISTS pedido;
+
+CREATE TABLE pedido (
+    id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    numero VARCHAR(50) UNIQUE NOT NULL,
+    fecha DATE NOT NULL,
+    clienteNombre VARCHAR(100) NOT NULL,
+    total DECIMAL(10,2) NOT NULL CHECK (total > 0),
+    estado ENUM('NUEVO','FACTURADO','ENVIADO') NOT NULL,
+    envio BIGINT UNIQUE,
+    eliminado BOOLEAN DEFAULT 0,
+    FOREIGN KEY (envio) REFERENCES envio(id)
+);
+
